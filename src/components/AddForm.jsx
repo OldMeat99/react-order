@@ -22,7 +22,12 @@ const tailLayout = {
 const AddForm = ({ setVisiable,submit }) => {
   const onFinish = values => {
     values.pubdata = moment(values.pubdata).format(dateFormat);
+
+    values=JSON.stringify(values);
+    
     console.log('Success:', values);
+    var a = Object.prototype.toString;
+    console.log(a.call(values));
     Axios.post('/api/save/', values).then(res => {
       setVisiable(false);
       submit()
